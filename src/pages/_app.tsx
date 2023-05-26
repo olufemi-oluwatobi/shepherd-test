@@ -1,0 +1,12 @@
+import ThemeProvider from "@/providers/theme.provider";
+import type { AppProps } from 'next/app';
+
+ 
+export default function MyApp({ Component, pageProps }: AppProps) {
+    console.log(Component)
+    return (
+      <ThemeProvider >
+        <Component {...pageProps} />
+      </ThemeProvider>
+    );
+  }
