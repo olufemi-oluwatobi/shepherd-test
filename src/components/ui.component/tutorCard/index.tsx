@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "styled-components";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {
   TutorSectionWrapper,
   StarIcon,
@@ -45,6 +45,19 @@ interface TutorCardProps {
   toggleBookmark: (id: number) => void;
 }
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const AnimatedTutorCardWrapper = styled(TutorCardWrapper)`
+  animation: ${fadeIn} 0.5s ease-in-out; /* Apply the fade-in animation */
+`;
+
 const TutorCard: React.FC<TutorCardProps> = ({ tutor, toggleBookmark }) => {
   const {
     name,
@@ -59,7 +72,7 @@ const TutorCard: React.FC<TutorCardProps> = ({ tutor, toggleBookmark }) => {
 
   const theme = useTheme();
   return (
-    <TutorCardWrapper>
+    <AnimatedTutorCardWrapper>
       <TutorImage src={imageUrl} alt="Tutor" />
       <Section>
         <TopSec>
@@ -86,7 +99,7 @@ const TutorCard: React.FC<TutorCardProps> = ({ tutor, toggleBookmark }) => {
           </Rating>
         </TutorSectionWrapper>
       </Section>
-    </TutorCardWrapper>
+    </AnimatedTutorCardWrapper>
   );
 };
 

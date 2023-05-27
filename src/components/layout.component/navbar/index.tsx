@@ -42,10 +42,10 @@ const UserLabel: React.FC = () => {
 };
 
 // MobileNav component for rendering the mobile version of the navbar
-const MobileNav: React.FC = ({
+const MobileNav = ({
   onSearchChange,
 }: {
-  onSearchChange?: (q: string) => void;
+   onSearchChange?: (q: string) => void;
 }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const theme = useTheme();
@@ -137,7 +137,7 @@ const Navbar: React.FC<NavbarProps> = ({ height, onSearchChange }) => {
   }, []);
 
   return isMobile ? (
-    <MobileNav />
+    <MobileNav onSearchChange={onSearchChange && onSearchChange} />
   ) : (
     <NavbarWrapper height={height}>
       <Input

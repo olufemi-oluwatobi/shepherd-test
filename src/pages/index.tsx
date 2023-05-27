@@ -99,22 +99,25 @@ const tutorsData: Tutor[] = [
 
 
 const TUTORS_STORAGE_KEY = "TUTORS_STORAGE_KEY"
+
 const TutorGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(1, 1fr); /* One column per row on mobile */
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   grid-gap: 2rem;
   margin-block: 2rem;
   justify-items: center;
   align-items: center;
 
-  @media (min-width: 768px) {
-    /* Add media query for larger screens */
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(30rem, 1fr)
-    ); /* Responsive grid with auto-fit */
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
+
+
+
+
+
+
 
 const TutorName = styled.h3`
   margin: 0;

@@ -1,17 +1,25 @@
-import React, { use } from 'react';
+import React from 'react';
 import { useTheme } from 'styled-components';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
-    mainText: string;
-    supportingText: string;
-    backgroundImage: string;
-  }
+  mainText: string;
+  supportingText: string;
+  backgroundImage: string;
+}
 
 interface BannerWrapperProps {
   backgroundImage: string;
 }
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 const HeroText = styled.div`
   text-align: center;
@@ -22,7 +30,6 @@ const HeroText = styled.div`
     text-align: left;
     font-size: 54px;
     font-size: ${({ theme }) => theme.fontSizes.xl};
-    
   }
 `;
 
@@ -37,7 +44,6 @@ const SupportingText = styled.div`
   @media (min-width: 768px) {
     text-align: left;
     max-width: 30%;
-
   }
 `;
 
@@ -52,6 +58,7 @@ const BannerWrapper = styled.div<BannerWrapperProps>`
   color: ${({ theme }) => theme.colors.white};
   padding: 80px 20px;
   text-align: center;
+  animation: ${fadeIn} 1s ease-in-out; /* Apply the fade-in animation */
 
   /* Dark overlay */
   &::before {
@@ -76,10 +83,8 @@ const BannerWrapper = styled.div<BannerWrapperProps>`
   }
 };`
 
-
-
 const Banner: React.FC<BannerProps> = ({ mainText, supportingText, backgroundImage, ...rest }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <BannerWrapper theme={theme} backgroundImage={backgroundImage} {...rest}>
       <HeroText>{mainText}</HeroText>
