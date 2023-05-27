@@ -1,16 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect, useRef, ReactNode,HTMLAttributes } from 'react';
+import styled, { useTheme } from 'styled-components';
 import { IconType } from 'react-icons';
 
-interface DropdownProps<T> {
+
+type Variant = "white" | "grey";
+
+interface DropdownProps<T>
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'> {
   list: T[];
   labelKey?: keyof T | string;
+  variant?: Variant;
   valueKey?: keyof T | string;
   prefixIcon?: IconType;
   suffixIcon?: IconType;
   onSelect?: (item: T) => void;
-  hoverToShow?: boolean; // New prop
+  displayLabel?: string | ReactNode;
+  hoverToShow?: boolean;
 }
+
 
 interface DropdownItemProps {
   active: boolean;
@@ -23,7 +30,7 @@ const DropdownWrapper = styled.div`
 const DropdownToggle = styled.button`
   display: inline-flex;
   align-items: center;
-  padding: 6px 12px;
+  padding: 10px 18px;
   margin-bottom: 0;
   font-size: 14px;
   font-weight: 400;
@@ -32,11 +39,11 @@ const DropdownToggle = styled.button`
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  color: #000;
+  font-weight: bold;
+  background-color: ${({theme}) => theme.colors.grey[100]};
+  border: 2px solid  transparent;
+  border-radius: 30px;
 
   .caret {
     display: inline-block;
@@ -79,7 +86,15 @@ const DropdownMenu = styled.ul`
 
 const DropdownItem = styled.li<DropdownItemProps>`
   cursor: pointer;
-  ${(props) => props.active && 'background: #ddd;'}
+  ${({active, theme}) => active && `background: ${theme.colors.primary};`}
+
+  &:not(:hover) > a {
+    color: #777;
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.grey[100]};
+  }
 
   & > a {
     display: block;
@@ -99,11 +114,15 @@ const Dropdown: React.FC<DropdownProps<any>> = ({
   valueKey = 'value',
   prefixIcon: PrefixIcon,
   suffixIcon: SuffixIcon,
+  displayLabel,
   onSelect,
-  hoverToShow = false // Default value is false
+  variant,
+  hoverToShow = false, // Default value is false,
+  ...rest
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [labelItem, setLabelItem] = useState<any>(null);
+  const theme = useTheme()
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isMenuHovered, setIsMenuHovered] = useState(false); // New state variable
 
@@ -141,6 +160,7 @@ const Dropdown: React.FC<DropdownProps<any>> = ({
   const chooseItem = (item: any) => {
     if (labelItem !== item) {
       setLabelItem(item);
+      setIsOpen(false);
       if (onSelect) {
         onSelect(item);
       }
@@ -159,15 +179,20 @@ const Dropdown: React.FC<DropdownProps<any>> = ({
   };
 
   return (
-    <DropdownWrapper ref={dropdownRef}>
-      <DropdownToggle type="button" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
-        {PrefixIcon && <PrefixIcon />}
+    <DropdownWrapper theme={theme} ref={dropdownRef}>
+      <DropdownToggle theme={theme} type="button" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
+        {displayLabel ? displayLabel : (
+          <div>
+             {PrefixIcon && <PrefixIcon />}
         {labelItem}
         {SuffixIcon && <SuffixIcon />}
+          </div>
+        )}
+       
         <span className="caret" />
       </DropdownToggle>
       {isOpen && (
-        <DropdownMenu onMouseEnter={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)}>
+        <DropdownMenu theme={theme} onMouseEnter={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)}>
         {list.map(renderDataDropDown)}
         </DropdownMenu>
       )}

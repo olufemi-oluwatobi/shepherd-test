@@ -1,5 +1,9 @@
-import React, { ReactNode, useContext, createContext } from "react";
-import { ThemeProvider as StyleComponentThemeProvider } from "styled-components";
+import React, { ReactNode } from "react";
+import {
+  ThemeProvider as StyleComponentThemeProvider,
+  useTheme as useStyledTheme,
+  DefaultTheme,
+} from "styled-components";
 
 const theme = {
   colors: {
@@ -8,13 +12,17 @@ const theme = {
     background: "#f2f2f2",
     white: "#fff",
     grey: {
-      100: "#dbdcdf",
-      200: "#f4f5f5",
-      300: "#707070",
-      400: "#606060",
-      500: "#505050",
-      600: "#404040",
-      700: "#303030",
+      "50": "#f7f7f7",
+      "100": "#e3e3e3",
+      "200": "#c8c8c8",
+      "300": "#a4a4a4",
+      "400": "#818181",
+      "500": "#666666",
+      "600": "#515151",
+      "700": "#434343",
+      "800": "#383838",
+      "900": "#313131",
+      "950": "#000000",
     },
   },
   fontSizes: {
@@ -24,7 +32,6 @@ const theme = {
     xl: "64px",
   },
 };
-
 
 const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (

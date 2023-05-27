@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import StyledComponentsRegistry from "@/lib/registry"
+import "./globals.css";
+import StyledComponentsRegistry from "@/lib/registry";
 import ThemeProvider from "@/providers/theme.provider";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ subsets: ["latin"], weight: ["100", "400", "900"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -17,11 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <StyledComponentsRegistry>
-        {children}
-        </StyledComponentsRegistry>
-      </body>
+      <StyledComponentsRegistry>
+        <body className={roboto.className}>{children}</body>
+      </StyledComponentsRegistry>
     </html>
   );
 }

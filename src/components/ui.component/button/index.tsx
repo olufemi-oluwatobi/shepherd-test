@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   text: string;
   prefixIcon?: React.ReactNode;
   suffixIcon?: React.ReactNode;
@@ -9,10 +9,11 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 const ButtonWrapper = styled.button<{ variant: 'light-blue' | 'white' }>`
-  border: 2px solid ${(props) => (props.variant === 'light-blue' ? '#3b82f6' : '#000')};
+  border:  ${(props) => (props.variant === 'light-blue' ? '2px solid #3b82f6' : 'none')};
   background-color: ${(props) => (props.variant === 'light-blue' ? '#3b82f6' : '#fff')};
-  color: ${(props) => (props.variant === 'light-blue' ? '#fff' : '#000')};
+  color: ${(props) => (props.variant === 'light-blue' ? '#fff' : '#3b82f6')};
   padding: 6px 18px;
+  font-size: 14px;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -21,9 +22,9 @@ const ButtonWrapper = styled.button<{ variant: 'light-blue' | 'white' }>`
   cursor: pointer;
 `;
 
-const Button: React.FC<ButtonProps> = ({ text, prefixIcon, suffixIcon, variant = 'light-blue' }) => {
+const Button: React.FC<ButtonProps> = ({ text, prefixIcon, suffixIcon, variant = 'light-blue', ...rest }) => {
   return (
-    <ButtonWrapper variant={variant}>
+    <ButtonWrapper {...rest} variant={variant}>
       {prefixIcon}
       <span>{text}</span>
       {suffixIcon}
