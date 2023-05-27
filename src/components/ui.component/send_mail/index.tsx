@@ -69,7 +69,7 @@ const ContactUs = ({onClick}: {onClick: () => void}) => {
       />
       <div className="lower_section">
         <MainText>Cant Find Your Desired Tutor</MainText>
-        <SupportingText>Send us a mail we'll find you the perfect match</SupportingText>
+        <SupportingText>Send us a mail we`ll find you the perfect match</SupportingText>
         <Button onClick={() => onClick()}>Send Email</Button>
       </div>
     </DivWrapper>

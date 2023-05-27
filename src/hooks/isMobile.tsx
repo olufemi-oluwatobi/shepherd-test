@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-const isMobileDevice = () => {
+const useIsMobileDevice = () => {
   const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
 
@@ -16,4 +16,4 @@ const isMobileDevice = () => {
   return isMobile;
 };
 
-export default isMobileDevice;
+export default useIsMobileDevice;
