@@ -72,8 +72,7 @@ The database for Shepherd Tutors Test is designed to store information about tut
 | id              | integer      | Unique identifier for the tutor (primary key)         |
 | name            | string       | Name of the tutor                                    |
 | qualification   | string       | Qualification of the tutor                           |
-| description     | string       | Description or bio of the tutor                       |
-| isBookmarked    | boolean      | Indicates if the tutor is bookmarked by a user        |
+| description     | string       | Description or bio of the tutor                       |      |
 | imageUrl        | string       | URL of the tutor's profile image                      |
 | createdAt       | timestamp    | Timestamp of when the tutor entry was created         |
 | updatedAt       | timestamp    | Timestamp of the last update to the tutor entry       |
