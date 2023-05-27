@@ -6,15 +6,14 @@ import Button from "../../ui.component/button";
 import { Dropdown, Menu } from "antd";
 import { RiArrowDropDownLine, RiArrowRightLine } from "react-icons/ri";
 import {
-    FilterSectionWrapper,
-    DropdownActive,
-    FilterLeftSection,
-    FilterRightSection,
-    StarItemWrapper,
-    FilterText,
-    ForwardText,
-  } from "./style";
-  
+  FilterSectionWrapper,
+  DropdownActive,
+  FilterLeftSection,
+  FilterRightSection,
+  StarItemWrapper,
+  FilterText as FilterTextStyled,
+  ForwardText,
+} from "./style";
 
 interface FilterSectionProps {
   onApplyFilter: () => void;
@@ -41,16 +40,19 @@ const FilterSection: React.FC<FilterSectionProps> = ({
   priceOptions,
   ratingOptions,
 }) => {
+  // State for storing the selected filters
   const [availabilityFilter, setAvailabilityFilter] = React.useState("");
   const [subjectFilter, setSubjectFilter] = React.useState("");
   const [levelFilter, setLevelFilter] = React.useState("");
   const [priceFilter, setPriceFilter] = React.useState("");
   const [ratingFilter, setRatingFilter] = React.useState("");
 
+  // Handler for applying the filter
   const handleApplyFilter = () => {
     onApplyFilter();
   };
 
+  // Handler for clearing all filters
   const handleClearFilter = () => {
     setAvailabilityFilter("");
     setSubjectFilter("");
@@ -59,6 +61,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
     setRatingFilter("");
   };
 
+  // Function to render the menu button for a dropdown
   const renderMenuButton = (
     dropdown: DropdownItem,
     selectedNode?: ReactNode
@@ -89,6 +92,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
     );
   };
 
+  // Dropdown configurations
   const dropdowns: DropdownItem[] = [
     {
       options: availabilityOptions,
@@ -134,6 +138,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
     },
   ];
 
+  // Styled components
   const FilterText = styled.div`
     color: ${({ theme }) => theme.colors.grey[300]};
     display: flex;
@@ -152,6 +157,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
   return (
     <FilterSectionWrapper>
       <FilterLeftSection>
+        {/* Filter text and dropdowns */}
         <FilterText>
           <FaCog size={20} />
           <div className="filter_label">Filter</div>

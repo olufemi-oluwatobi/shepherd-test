@@ -1,5 +1,3 @@
-// FilterSection.style.tsx
-
 import styled from "styled-components";
 
 export const FilterSectionWrapper = styled.div`
@@ -38,7 +36,7 @@ export const DropdownActive = styled.div`
   .arrow_forward {
     margin: 0px 10px;
   }
-
+0
   .selected_items {
     color: ${({ theme }) => theme.colors.primary};
     font-weight: bold;
@@ -49,17 +47,37 @@ export const FilterLeftSection = styled.div`
   min-width: 60%;
   display: flex;
   align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 10px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const FilterRightSection = styled.div`
   display: flex;
+  flex-direction: row-reverse;
+  margin-top: 10px;
   align-items: center;
+
+  @media (min-width: 768px) {
+    margin-top: 0px;
+    flex-direction: row;
+
+    .button {
+        margin-left: 10px;
+        margin-right: 0px
+      }
+}
 
   .clear_button {
     font-weight: bold;
   }
   button {
-    margin-left: 10px;
+    margin-left: 0px;
+    margin-right: 10px
   }
 `;
 

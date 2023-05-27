@@ -21,17 +21,17 @@ const InputWrapper = styled.div<InputWrapperProps>`
   min-width: 200px;
   height: 40px;
   background-color: ${(props) => props.theme?.colors?.white};
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 0 10px;
-  border: 2px solid ${(props) => props.theme?.colors?.grey[100]};
+  border: 1.5px solid ${(props) => props.theme?.colors?.grey[200]};
   transition: background-color 0.3s ease;
 
   &:hover {
-    border: ${(props) => props.theme?.colors?.grey[100]};
+    border: ${(props) => props.theme?.colors?.grey[200]};
   }
 
   &:focus-within {
-    border: 2px solid ${(props) => props.theme?.colors?.primary};
+    border: 1.5px solid ${(props) => props.theme?.colors?.primary};
   }
 
   input {
@@ -42,11 +42,11 @@ const InputWrapper = styled.div<InputWrapperProps>`
     background-color: transparent;
     padding: 0;
     font-size: inherit;
-    color: ${(props) => props.theme?.colors?.grey[100]};
+    color: ${(props) => props.theme?.colors?.grey[200]};
     transition: color 0.3s ease;
 
     &::placeholder {
-      color: ${(props) => props.theme?.colors?.grey[100]};
+      color: ${(props) => props.theme?.colors?.grey[200]};
       font-weight: bold;
     }
   }
@@ -55,6 +55,7 @@ const InputWrapper = styled.div<InputWrapperProps>`
 
 const Prefix = styled.span`
   margin-right: 8px;
+  color: ${(props) => props.theme?.colors?.grey[200]};
   margin-top: 2px;
 `;
 

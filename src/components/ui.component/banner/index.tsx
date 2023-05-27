@@ -12,28 +12,17 @@ interface BannerWrapperProps {
   backgroundImage: string;
 }
 
-const BannerWrapper = styled.div<BannerWrapperProps>`
-  background-image: url(${({ backgroundImage }) => backgroundImage});
-  display: flex;
-  flex-direction: column;
-  background-size: cover;
-  background-position: center;
-  border-radius: 20px;
-  color: ${({ theme }) => theme.colors.white};
-  padding: 60px 30px;
-  text-align: center;
-
-  @media (min-width: 768px) {
-    text-align: left;
-  }
-`;
 
 const HeroText = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.xl};
   text-align: center;
+  font-size: 48px;
+  margin-bottom: 10px;
 
   @media (min-width: 768px) {
     text-align: left;
+    font-size: 54px;
+    font-size: ${({ theme }) => theme.fontSizes.xl};
+    
   }
 `;
 
@@ -42,7 +31,7 @@ const SupportingText = styled.div`
   margin-bottom: 0;
   max-width: 100%;
   margin-top: 10px;
-  line-height: 25px;
+  line-height: 30px;
   text-align: center;
 
   @media (min-width: 768px) {
@@ -51,6 +40,43 @@ const SupportingText = styled.div`
 
   }
 `;
+
+const BannerWrapper = styled.div<BannerWrapperProps>`
+  background-image: url(${({ backgroundImage }) => backgroundImage});
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  position: relative;
+  background-position: center;
+  border-radius: 20px;
+  color: ${({ theme }) => theme.colors.white};
+  padding: 80px 20px;
+  text-align: center;
+
+  /* Dark overlay */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust the opacity (0.6) to your liking */
+    border-radius: 20px;
+  }
+
+  ${HeroText}, ${SupportingText} {
+    position: relative;
+    z-index: 1; /* Higher z-index to keep the texts above the overlay */
+  }
+
+  @media (min-width: 768px) {
+    text-align: left;
+    padding: 80px 60px;
+  }
+};`
+
+
 
 const Banner: React.FC<BannerProps> = ({ mainText, supportingText, backgroundImage, ...rest }) => {
   const theme = useTheme()

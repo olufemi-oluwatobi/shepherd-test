@@ -18,6 +18,7 @@ const ButtonWrapper = styled.button<{ variant: 'light-blue' | 'white' }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
   gap: 4px;
   cursor: pointer;
 `;
