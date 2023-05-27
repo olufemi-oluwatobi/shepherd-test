@@ -33,8 +33,8 @@ export const TutorCardWrapper = styled.div`
   display: flex;
   min-height: 250px;
   align-items: flex-start;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 20px;
+  border-radius: 20px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   transition: box-shadow 0.3s ease-in-out;
@@ -120,7 +120,7 @@ export const BookmarkIcon = styled(FaBookmark)`
 export const Section = styled.div`
   display: flex;
   height: 100%;
-  padding: 10px;
+  padding: 0px 20px;
   flex-direction: column;
   justify: space-between;
 `;
