@@ -355,8 +355,6 @@ The backend provides the following API endpoints for retrieving and manipulating
 
 ## Caching Implementation
 
-## Caching Implementation
-
 To optimize the performance of the Shepherd Tutors Test backend, we will employ Redis as our caching solution. Redis is a powerful in-memory data store that enables rapid storage and retrieval of key-value pairs.
 
 By implementing caching with Redis, we can achieve the following benefits for our project:
